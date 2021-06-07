@@ -1,0 +1,13 @@
+[package]
+name = "compressible"
+version = "0.1.0"
+authors = ["Satya Rohith <me@satyarohith.com>"]
+edition = "2018"
+description = "Check if a content-type can be compressed using gzip, deflate, brotli, etc."
+homepage = "https://github.com/satyarohith/compressible"
+repository = "https://github.com/satyarohith/compressible"
+license = "MIT"
+keywords = ["gzip", "brotli", "deflate", "compression"]
+
+[dependencies]
+mime = "0.3.16"
