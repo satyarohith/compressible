@@ -11,9 +11,7 @@
 //! assert_eq!(is_compressible("text/plain"), true);
 //! ```
 use mime::Mime;
-use std::array::IntoIter;
 use std::collections::HashMap;
-use std::iter::FromIterator;
 
 /// Returns `bool` indicating whether the provided content type is compressible
 /// using compression algorithms like brotli, gzip, deflate, etc.
@@ -22,7 +20,7 @@ use std::iter::FromIterator;
 /// and returns `false` if the parsing fails.
 pub fn is_compressible(content_type: &str) -> bool {
     // Data obtained from https://github.com/jshttp/mime-db/blob/fa5e4ef3cc8907ec3c5ec5b85af0c63d7059a5cd/db.json
-    let compressible_map = HashMap::<&str, bool>::from_iter(IntoIter::new([
+    let compressible_map: HashMap<&str, bool> = [
         ("application/3gpdash-qoe-report+xml", true),
         ("application/3gpp-ims+xml", true),
         ("application/3gpphal+json", true),
@@ -854,7 +852,10 @@ pub fn is_compressible(content_type: &str) -> bool {
         ("text/yaml", true),
         ("x-shader/x-fragment", true),
         ("x-shader/x-vertex", true),
-    ]));
+    ]
+    .iter()
+    .cloned()
+    .collect();
 
     if let Ok(content_type) = content_type.parse::<Mime>() {
         if let Some(compressible) = compressible_map.get(content_type.essence_str()) {
