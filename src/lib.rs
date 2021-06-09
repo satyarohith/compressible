@@ -8,7 +8,7 @@
 //! ```
 //! use compressible::is_compressible;
 //!
-//! assert_eq!(is_compressible("text/plain".to_string()), true);
+//! assert_eq!(is_compressible("text/plain"), true);
 //! ```
 use mime::Mime;
 use std::array::IntoIter;
@@ -20,7 +20,7 @@ use std::iter::FromIterator;
 ///
 /// The provided content_type is parsed using https://docs.rs/mime/0.3.16/mime/
 /// and returns `false` if the parsing fails.
-pub fn is_compressible(content_type: String) -> bool {
+pub fn is_compressible(content_type: &str) -> bool {
     // Data obtained from https://github.com/jshttp/mime-db/blob/fa5e4ef3cc8907ec3c5ec5b85af0c63d7059a5cd/db.json
     let compressible_map = HashMap::<&str, bool>::from_iter(IntoIter::new([
         ("application/3gpdash-qoe-report+xml", true),
@@ -873,16 +873,10 @@ mod tests {
 
     #[test]
     fn it_works() {
-        assert_eq!(is_compressible("text/plain".to_string()), true);
-        assert_eq!(
-            is_compressible("application/x-web-app-manifest+json".to_string()),
-            true
-        );
+        assert_eq!(is_compressible("text/plain"), true);
+        assert_eq!(is_compressible("application/x-web-app-manifest+json"), true);
 
-        assert_eq!(is_compressible("image/jpeg; param=1".to_string()), false);
-        assert_eq!(
-            is_compressible("as;ldfkjas;ldfkja;lsdfj".to_string()),
-            false
-        );
+        assert_eq!(is_compressible("image/jpeg; param=1"), false);
+        assert_eq!(is_compressible("as;ldfkjas;ldfkja;lsdfj"), false);
     }
 }

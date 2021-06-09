@@ -17,6 +17,6 @@ compressible = "0.1.0"
 ```rs
 use compression::is_compressible;
 
-assert_eq!(is_compressible("text/plain".to_string()), true);
-assert_eq!(is_compressible("image/jpeg".to_string()), false);
+assert_eq!(is_compressible("text/plain"), true);
+assert_eq!(is_compressible("image/jpeg"), false);
 ```
