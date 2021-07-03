@@ -1,6 +1,6 @@
 [package]
 name = "compressible"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Satya Rohith <me@satyarohith.com>"]
 edition = "2018"
 description = "Check if a content-type can be compressed using gzip, deflate, brotli, etc."

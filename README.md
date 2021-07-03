@@ -9,7 +9,7 @@ brotli, deflate, etc.
 
 ```toml
 [dependencies]
-compressible = "0.1.0"
+compressible = "0.2.0"
 ```
 
 `main.rs`
